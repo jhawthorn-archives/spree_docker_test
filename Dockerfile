@@ -8,16 +8,16 @@ RUN apt-get -y install python-software-properties wget openssl libreadline6 libr
 WORKDIR /root
 
 RUN \
-  wget -O ruby-install-0.4.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.1.tar.gz; \
-  tar -xzvf ruby-install-0.4.1.tar.gz; \
-  cd ruby-install-0.4.1/ && make install; \
-  rm -Rf ruby-install-0.4.1 ruby-install-0.4.1.tar.gz
+  wget -O ruby-install-0.4.3.tar.gz https://github.com/postmodern/ruby-install/archive/v0.4.3.tar.gz; \
+  tar -xzvf ruby-install-0.4.3.tar.gz; \
+  cd ruby-install-0.4.3/ && make install; \
+  rm -Rf ruby-install-0.4.3 ruby-install-0.4.3.tar.gz
 
-RUN CFLAGS="-O3" ruby-install ruby 2.1.1 -j5
+RUN CFLAGS="-O3 -g" ruby-install ruby 2.1.2 -j5
 
-ENV PATH /home/rails/.gem/ruby/2.1.0/bin:/opt/rubies/ruby-2.1.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH /home/rails/.gem/ruby/2.1.0/bin:/opt/rubies/ruby-2.1.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV GEM_HOME /home/rails/.gem/ruby/2.1.0
-ENV GEM_PATH /home/rails/.gem/ruby/2.1.0:/opt/rubies/ruby-2.1.1/lib/ruby/gems/2.1.0
+ENV GEM_PATH /home/rails/.gem/ruby/2.1.0:/opt/rubies/ruby-2.1.2/lib/ruby/gems/2.1.0
 
 # Faster nokogiri installs
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
